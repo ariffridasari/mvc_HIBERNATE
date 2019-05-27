@@ -5,6 +5,7 @@
  */
 package tools;
 
+import org.hibernate.Hibernate;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 
@@ -15,9 +16,7 @@ import org.hibernate.SessionFactory;
  * @author Arif Fridasari
  */
 public class HibernateUtil {
-
     private static final SessionFactory sessionFactory;
-    
     static {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 

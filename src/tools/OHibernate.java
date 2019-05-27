@@ -60,26 +60,25 @@ public class OHibernate {
          */
         GeneralDAO<Department> dDao = new GeneralDAO<>(factory, Department.class);
         DepartmentController dc = new DepartmentController(factory);
-        for (Department department : dDao.getData("250")) {
-            System.out.println(department.getName());
-            System.out.println(department.getId());
-            System.out.println(department.getManager());
-            System.out.println(department.getLocation());
-            
-        }
+//        for (Department department : dDao.getData("")) {
+//            System.out.println(department.getName());
+//            System.out.println(department.getId());      
+//        }
+
+//        System.out.println(dc.getById("10"));
 
         /**
          * INSERT
          */
 //        Department department = new Department(new Short("270"), "Bawen");
 //        System.out.println(dDao.saveOrDelete(department, false));
-//        System.out.println(dc.save("281", "dept", "100", "1700"));
+//        System.out.println(dc.save("281", "Siapa", "100", "1700"));
         /**
          * UPDATE
          */
 //        Department department = new Department(new Short("270"), "Bawen Sayang");
 //        System.out.println(dDao.saveOrDelete(department, false));
-//        System.out.println(dc.save("281", "depta", "100", "1700"));
+//        System.out.println(dc.save("281", "Siapa Anda?", "100", "1700"));
         /**
          * DELETE
          */
@@ -87,12 +86,12 @@ public class OHibernate {
 //        System.out.println(dDao.saveOrDelete(department, true));
 //        Department department = new Department(new Short("270"));
 //        System.out.println(dDao.saveOrDelete(department, true));
-//        System.out.println(dc.delete("281"));
+//        System.out.println(dc.delete("270"));
 
 /**
          * author erik
          */
-        SessionFactory SessionFactory = HibernateUtil.getSessionFactory();
+//        SessionFactory SessionFactory = HibernateUtil.getSessionFactory();
 //        IJobDAO ijdao = new JobDAO(SessionFactory);
         // TODO code application logic here
 //        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

@@ -6,12 +6,15 @@
 package views;
 
 import controllers.DepartmentController;
+import daos.GeneralDAO;
 import icontrollers.IDepartmentController;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Department;
+import models.Employee;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import tools.HibernateUtil;
 
@@ -21,8 +24,11 @@ import tools.HibernateUtil;
  */
 public class JIDepartment extends javax.swing.JInternalFrame {
 
-    private SessionFactory factory = HibernateUtil.getSessionFactory();
-    IDepartmentController idc = new DepartmentController(factory); 
+    DefaultTableModel model = new DefaultTableModel();
+    SessionFactory factory = HibernateUtil.getSessionFactory();
+
+    GeneralDAO<Department> dAO = new GeneralDAO<>(factory, Department.class);
+    IDepartmentController idc = new DepartmentController(factory);
 
     /**
      * Creates new form JIDepartment
@@ -30,6 +36,17 @@ public class JIDepartment extends javax.swing.JInternalFrame {
     public JIDepartment() {
         initComponents();
         showTableDepartment();
+        nomor();
+    }
+
+    public Object nomor() {
+        Object[] no = new Object[1];
+        int baris = model.getRowCount();
+        for (int i = 0; i < baris; i++) {
+            String No = String.valueOf(i + 1);
+            model.setValueAt(No + ".", i, 0);
+        }
+        return no;
     }
 
     public void resetTextDepartment() {
@@ -43,28 +60,39 @@ public class JIDepartment extends javax.swing.JInternalFrame {
 
     public void showTableDepartment() {
         DefaultTableModel model = (DefaultTableModel) tableDepartment.getModel();
-        Object[] row = new Object[4];
+        Object[] row = new Object[5];
         List<Department> department = new ArrayList<>();
         department = idc.getAll();
         for (int i = 0; i < department.size(); i++) {
-            row[0] = department.get(i).getId();
-            row[1] = department.get(i).getName();
-            row[2] = department.get(i).getManager();
-            row[3] = department.get(i).getLocation();
+            row[0] = i + 1;
+            row[1] = department.get(i).getId();
+            row[2] = department.get(i).getName();
+            if (department.get(i).getManager() == null) {
+                row[3] = "";
+            } else {
+                row[3] = department.get(i).getManager().getId();
+            }
+            if (department.get(i).getLocation().getCity() == null) {
+                row[4] = "";
+            } else {
+                row[4] = department.get(i).getLocation().getCity();
+            }
+
             model.addRow(row);
         }
     }
 
     public void showTableDepartment(String s) {
         DefaultTableModel model = (DefaultTableModel) tableDepartment.getModel();
-        Object[] row = new Object[4];
+        Object[] row = new Object[5];
         List<Department> department = new ArrayList<>();
         department = idc.search(s);
         for (int i = 0; i < department.size(); i++) {
-            row[0] = department.get(i).getId();
-            row[1] = department.get(i).getName();
-            row[2] = department.get(i).getManager();
-            row[3] = department.get(i).getLocation();
+            row[0] = nomor();
+            row[1] = department.get(i).getId();
+            row[2] = department.get(i).getName();
+            row[3] = department.get(i).getManager().getLastName();
+            row[4] = department.get(i).getLocation().getCity();
             model.addRow(row);
         }
     }
@@ -132,15 +160,22 @@ public class JIDepartment extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "Name", "Manager", "Location"
+                "No.", "Id", "Name", "Manager", "Location"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tableDepartment.setName(""); // NOI18N
@@ -356,10 +391,10 @@ public class JIDepartment extends javax.swing.JInternalFrame {
 
         txtDepartment_Id.setEditable(false);
         btnInsertDepartment.setEnabled(false);
-        txtDepartment_Id.setText(model.getValueAt(SelectRowIndex, 0).toString());
-        txtDepartment_Name.setText(model.getValueAt(SelectRowIndex, 1).toString());
-        txtManager_id.setText(model.getValueAt(SelectRowIndex, 2).toString());
-        txtLocation_id.setText(model.getValueAt(SelectRowIndex, 3).toString());
+        txtDepartment_Id.setText(model.getValueAt(SelectRowIndex, 1).toString());
+        txtDepartment_Name.setText(model.getValueAt(SelectRowIndex, 2).toString());
+        txtManager_id.setText(model.getValueAt(SelectRowIndex, 3).toString());
+        txtLocation_id.setText(model.getValueAt(SelectRowIndex, 4).toString());
     }//GEN-LAST:event_tableDepartmentMouseClicked
 
     private void txtDepartment_IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepartment_IdActionPerformed

@@ -46,7 +46,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 413, Short.MAX_VALUE)
         );
 
-        jMenu1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.lightGray, null));
+        jMenu1.setBorder(javax.swing.BorderFactory.createEtchedBorder(0, java.awt.Color.lightGray, null));
         jMenu1.setText("Main");
         jMenu1.setAlignmentX(4.0F);
         jMenu1.setAlignmentY(4.0F);
@@ -123,27 +123,12 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void regionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regionItemActionPerformed
-        JIRegionView regionView = new JIRegionView();
-        this.jDesktopPane1.add(regionView);
-        regionView.show();
-    }//GEN-LAST:event_regionItemActionPerformed
-
-    private void countryItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryItemActionPerformed
+    private void jobItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_countryItemActionPerformed
-
-    private void locationItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationItemActionPerformed
-        JILocationView locationView = new JILocationView();
-        this.jDesktopPane1.add(locationView);
-        locationView.show();
-    }//GEN-LAST:event_locationItemActionPerformed
-
-    private void departmentItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentItemActionPerformed
-        JIDepartment departmentView = new JIDepartment();
-        this.jDesktopPane1.add(departmentView);
-        departmentView.show();
-    }//GEN-LAST:event_departmentItemActionPerformed
+        JIJob iJob = new JIJob();
+        this.jDesktopPane1.add(iJob);
+        iJob.show();
+    }//GEN-LAST:event_jobItemActionPerformed
 
     private void employeeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeItemActionPerformed
         JIEmployeeFrame employeeView = new JIEmployeeFrame();
@@ -151,12 +136,27 @@ public class MainFrame extends javax.swing.JFrame {
         employeeView.show();
     }//GEN-LAST:event_employeeItemActionPerformed
 
-    private void jobItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobItemActionPerformed
+    private void departmentItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentItemActionPerformed
+        JIDepartment departmentView = new JIDepartment();
+        this.jDesktopPane1.add(departmentView);
+        departmentView.show();
+    }//GEN-LAST:event_departmentItemActionPerformed
+
+    private void locationItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationItemActionPerformed
+        JILocationView locationView = new JILocationView();
+        this.jDesktopPane1.add(locationView);
+        locationView.show();
+    }//GEN-LAST:event_locationItemActionPerformed
+
+    private void countryItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryItemActionPerformed
         // TODO add your handling code here:
-        JIJob iJob = new JIJob();
-        this.jDesktopPane1.add(iJob);
-        iJob.show();
-    }//GEN-LAST:event_jobItemActionPerformed
+    }//GEN-LAST:event_countryItemActionPerformed
+
+    private void regionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regionItemActionPerformed
+        JIRegionView regionView = new JIRegionView();
+        this.jDesktopPane1.add(regionView);
+        regionView.show();
+    }//GEN-LAST:event_regionItemActionPerformed
 
     /**
      * @param args the command line arguments

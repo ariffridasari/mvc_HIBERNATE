@@ -41,6 +41,7 @@ Contributor(s):
 -->
 <hibernate-configuration>
     <session-factory>
+        <property name="current_session_context_class">thread</property> 
         <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
         <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
         <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
@@ -49,7 +50,6 @@ Contributor(s):
         <property name="hibernate.default_schema">hr</property>
         <property name="hibernate.show_sql">false</property>
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
-        <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.connection.autocommit">true</property>
         <mapping class="models.Region"/>
         <mapping class="models.Country"/>
